@@ -22,6 +22,7 @@ def main():
             p = Process(target=handle_echo, args=(addr, conn))
             p.daemon = True
             p.start()
+            time.sleep(0.5)
             print("Started process ", p)
 
 #echo connections back to client

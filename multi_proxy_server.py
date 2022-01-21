@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import socket, time, sys
+from multiprocessing import Process
 
 #define global address and buffer size
 HOST = "localhost"
@@ -57,11 +58,11 @@ def main():
                 #connect proxy_end
                 proxy_end.connect((remote_ip, port))
 
-                p = Process(target=handle_request, args = (conn,addr,proxy_end))
+                p = Process(target=handle_request, args = (addr, conn, proxy_end))
 
                 p.daemon = True
                 p.start()
-                
+
                 print("Start process",p)
 
             conn.close()
